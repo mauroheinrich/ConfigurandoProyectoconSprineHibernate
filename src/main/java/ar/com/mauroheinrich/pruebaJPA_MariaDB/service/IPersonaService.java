@@ -19,4 +19,9 @@ public interface IPersonaService {
     public Persona findPersona(Long id);
     
     //edicion modificacion
+    public void editPersona(Long idOriginal,
+                             Long idNueva, 
+                             String nuevoNombre, 
+                             String nuevoApellido, 
+                             int nuevaEdad);
 }

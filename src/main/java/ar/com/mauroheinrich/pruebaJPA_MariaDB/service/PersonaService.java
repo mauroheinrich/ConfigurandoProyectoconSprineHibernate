@@ -16,22 +16,38 @@ public class PersonaService implements IPersonaService{
 
     @Override
     public List<Persona> getPersonas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       List<Persona> listaPersonas = persoRepo.findAll();
+       return listaPersonas;
     }
 
     @Override
     public void savePersona(Persona perso) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        persoRepo.save(perso);
     }
 
     @Override
     public void deletePersona(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        persoRepo.deleteById(id);
     }
 
     @Override
     public Persona findPersona(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       Persona perso = persoRepo.findById(id).orElse(null);
+       return perso;
+    }
+
+    @Override
+    public void editPersona(Long idOriginal, Long idNueva, String nuevoNombre, String nuevoApellido, int nuevaEdad) {
+       //busco el objeto orifinal
+       Persona perso = this.findPersona(idOriginal);
+       
+       perso.setId(idNueva);
+       perso.setNombre(nuevoNombre);
+       perso.setApellido(nuevoApellido);
+       perso.setEdad(nuevaEdad);
+       
+       //guardar los cambios
+       this.savePersona(perso);
     }
     
     
