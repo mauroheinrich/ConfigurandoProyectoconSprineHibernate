@@ -21,7 +21,7 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(Long dd, String nombre, String apellido, int edad) {
+    public Persona(Long id, String nombre, String apellido, int edad) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;

@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonaService implements IPersonaService{
     
-    
     @Autowired
     private IPersonaRepository persoRepo;
 
     @Override
     public List<Persona> getPersonas() {
-       List<Persona> listaPersonas = persoRepo.findAll();
-       return listaPersonas;
+        
+        List<Persona> listaPersonas = persoRepo.findAll();
+        return listaPersonas;     
     }
 
     @Override
@@ -32,23 +32,25 @@ public class PersonaService implements IPersonaService{
 
     @Override
     public Persona findPersona(Long id) {
-       Persona perso = persoRepo.findById(id).orElse(null);
-       return perso;
+        Persona perso = persoRepo.findById(id).orElse(null);
+        return perso;
     }
 
     @Override
     public void editPersona(Long idOriginal, Long idNueva, String nuevoNombre, String nuevoApellido, int nuevaEdad) {
-       //busco el objeto orifinal
-       Persona perso = this.findPersona(idOriginal);
-       
-       perso.setId(idNueva);
-       perso.setNombre(nuevoNombre);
-       perso.setApellido(nuevoApellido);
-       perso.setEdad(nuevaEdad);
-       
-       //guardar los cambios
-       this.savePersona(perso);
+            //busco  el objeto original
+            Persona perso = this.findPersona(idOriginal);
+            
+            //proceso de modificación a nivel lógico
+            perso.setId(idNueva);
+            perso.setNombre(nuevoNombre);
+            perso.setApellido(nuevoApellido);
+            perso.setEdad(nuevaEdad);
+            
+            //guardar los cambios
+            this.savePersona(perso);
     }
+    
     
     
 }
